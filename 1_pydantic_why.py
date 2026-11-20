@@ -1,8 +1,11 @@
 def insert_patient_data(name: str, age: int):
     if type(name) == str and type(age) == int:
-        print(name)
-        print(age)
-        print("inserted into db")
+        if age < 0:
+            raise ValueError("Age can't be less than 0")
+        else:
+            print(name)
+            print(age)
+            print("inserted into db")
     else:
         raise TypeError("Incorrect data type")
 
