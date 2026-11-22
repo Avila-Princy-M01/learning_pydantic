@@ -1,22 +1,33 @@
-def insert_patient_data(name: str, age: int):
-    if type(name) == str and type(age) == int:
-        if age < 0:
-            raise ValueError("Age can't be less than 0")
-        else:
-            print(name)
-            print(age)
-            print("inserted into db")
-    else:
-        raise TypeError("Incorrect data type")
+from pydantic import BaseModel
+from typing import List, Dict
 
-def update_patient_data(name: str, age: int):
-    if type(name) == str and type(age) == int:
-        print(name)
-        print(age)
-        print("updated in the db")
-    else:
-        raise TypeError("Incorrect data type")
+class Patient(BaseModel):
+    name : str
+    age: int
+    weight: float
+    married: bool
+    allergies: List[str]
+    contact_details: Dict[str, str]
 
-insert_patient_data("avila", "twenty-two")
-insert_patient_data("avila", "22")
-insert_patient_data("avila", 22)
+def insert_patient_data(patient: Patient):
+    print(patient.name)
+    print(patient.age)
+    print(patient.weight)
+    print(patient.married)
+    print(patient.allergies)
+    print(patient.contact_details)
+    print("inserted into db")
+    print()
+
+def update_patient_data(patient: Patient):
+    print(patient.name)
+    print(patient.age)
+    print("updated into db")
+
+patient_info = {"name": "Avila", "age": 22, "weight": 49, "married": False, "allergies": ["pollen", "peanut", "dust"], "contact_details":{"email": "abc@gmail.com", "phone":"123456789"}}
+
+
+patient1 = Patient(**patient_info)
+
+insert_patient_data(patient1)
+update_patient_data(patient1)
