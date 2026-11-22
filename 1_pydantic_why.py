@@ -5,7 +5,8 @@ class Patient(BaseModel):
     name : str
     age: int
     weight: float
-    married: bool
+    #you can set default values
+    married: bool = False
     #when you make a feild optional it's necessary to give a default value too!!
     allergies: Optional[List[str]] = None 
     contact_details: Dict[str, str]
@@ -25,7 +26,7 @@ def update_patient_data(patient: Patient):
     print(patient.age)
     print("updated into db")
 
-patient_info = {"name": "Avila", "age": 22, "weight": 49, "married": False, "contact_details":{"email": "abc@gmail.com", "phone":"123456789"}}
+patient_info = {"name": "Avila", "age": 22, "weight": 49, "contact_details":{"email": "abc@gmail.com", "phone":"123456789"}}
 
 
 patient1 = Patient(**patient_info)
