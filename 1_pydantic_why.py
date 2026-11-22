@@ -1,12 +1,13 @@
 from pydantic import BaseModel
-from typing import List, Dict
+from typing import List, Dict, Optional
 
 class Patient(BaseModel):
     name : str
     age: int
     weight: float
     married: bool
-    allergies: List[str]
+    #when you make a feild optional it's necessary to give a default value too!!
+    allergies: Optional[List[str]] = None 
     contact_details: Dict[str, str]
 
 def insert_patient_data(patient: Patient):
@@ -24,7 +25,7 @@ def update_patient_data(patient: Patient):
     print(patient.age)
     print("updated into db")
 
-patient_info = {"name": "Avila", "age": 22, "weight": 49, "married": False, "allergies": ["pollen", "peanut", "dust"], "contact_details":{"email": "abc@gmail.com", "phone":"123456789"}}
+patient_info = {"name": "Avila", "age": 22, "weight": 49, "married": False, "contact_details":{"email": "abc@gmail.com", "phone":"123456789"}}
 
 
 patient1 = Patient(**patient_info)
